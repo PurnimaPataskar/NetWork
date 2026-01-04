@@ -1,18 +1,20 @@
 package com.linkedin.backend.authentication.model;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 
 @Entity(name = "user")
 public class AuthenticationUser {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String email;
 	private String password;
 	
 	
-	public AuthenticationUser(Long id, String email, String password) {
-		this.id = id;
+	public AuthenticationUser(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}
