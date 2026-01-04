@@ -1,10 +1,10 @@
-package com.networks.networks;
+package com.example.networks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NetWorksApplicationTests {
+class NetworksApplicationTests {
 
 	@Test
 	void contextLoads() {

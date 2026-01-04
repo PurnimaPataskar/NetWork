@@ -1,13 +1,13 @@
-package com.networks.networks;
+package com.example.networks;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NetWorksApplication {
+public class NetworksApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NetWorksApplication.class, args);
+		SpringApplication.run(NetworksApplication.class, args);
 	}
 
 }
