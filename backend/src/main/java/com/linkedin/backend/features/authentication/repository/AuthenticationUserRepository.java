@@ -1,7 +1,8 @@
-package com.linkedin.backend.authentication.repository;
+package com.linkedin.backend.features.authentication.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.linkedin.backend.authentication.model.AuthenticationUser;
+
+import com.linkedin.backend.features.authentication.model.AuthenticationUser;
 
 public interface AuthenticationUserRepository extends JpaRepository<AuthenticationUser, Long> {
 

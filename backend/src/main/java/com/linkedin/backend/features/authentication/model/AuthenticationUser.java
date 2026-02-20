@@ -1,4 +1,4 @@
-package com.linkedin.backend.authentication.model;
+package com.linkedin.backend.features.authentication.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
