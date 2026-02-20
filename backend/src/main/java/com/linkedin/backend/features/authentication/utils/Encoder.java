@@ -11,7 +11,7 @@ public class Encoder {
 	public String encode(String rawString) {
 		try {
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
-		byte[] hash = digest.digest()rawString.getBytes();
+		byte[] hash = digest.digest(rawString.getBytes());
 		return Base64.getEncoder().encodeToString(hash);
 		} catch (NoSuchAlgorithmException e) {
 			throw new RuntimeException("Error encoding String", e);
