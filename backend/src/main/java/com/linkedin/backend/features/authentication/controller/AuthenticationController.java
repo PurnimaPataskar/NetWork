@@ -11,6 +11,8 @@ import com.linkedin.backend.features.authentication.dto.AuthenticationResponseBo
 import com.linkedin.backend.features.authentication.model.AuthenticationUser;
 import com.linkedin.backend.features.authentication.service.AuthenticationService;
 
+import jakarta.validation.Valid;
+
 @RestController 
 @RequestMapping("/api/v1/authentication")
 public class AuthenticationController {
@@ -27,7 +29,7 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/register")
-	public AuthenticationResponseBody registerPage (@RequestBody AuthenticationRequestBody registerRequestBody) {
+	public AuthenticationResponseBody registerPage (@Valid @RequestBody AuthenticationRequestBody registerRequestBody) {
 		return authenticationService.register(registerRequestBody);
 	}
 

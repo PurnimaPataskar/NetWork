@@ -1,8 +1,14 @@
 package com.linkedin.backend.features.authentication.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class AuthenticationRequestBody {
 	
+	@NotBlank(message = "email is mandatory")
+	@Email
 	public String email;
+	@NotBlank(message = "password is mandatory")
 	public String password;
 	
 	public AuthenticationRequestBody(String email, String password) {
