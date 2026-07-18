@@ -1,9 +1,10 @@
 package com.example.networks;
 
+import com.linkedin.backend.BackendApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = BackendApplication.class)
 class BackendApplicationTests {
 
 	@Test
