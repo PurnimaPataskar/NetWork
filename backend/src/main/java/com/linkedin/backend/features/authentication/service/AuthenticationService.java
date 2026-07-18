@@ -29,8 +29,8 @@ public class AuthenticationService {
 
 	public AuthenticationResponseBody register(AuthenticationRequestBody registerRequestBody) {
 		authenticationUserRepository.save(new AuthenticationUser(registerRequestBody.getEmail(), encoder.encode(registerRequestBody.getPassword())));
-		
-		return new AuthenticationResponseBody("token", "user registerd successfully");
+		String token = jsonWebToken.generateToken(registerRequestBody.getEmail());
+		return new AuthenticationResponseBody(token, "user registerd successfully");
 	}
 
 	public AuthenticationResponseBody login(AuthenticationRequestBody loginRequestBody) {
