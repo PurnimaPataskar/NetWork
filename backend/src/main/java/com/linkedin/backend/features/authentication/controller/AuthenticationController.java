@@ -56,7 +56,7 @@ public class AuthenticationController {
 
 	@PutMapping("/reset-password")
 	public String resetPassword(@RequestParam String token, @RequestParam String newPassword, @RequestParam String email) {
-		authenticationService.resetPassword(email, newPassword, token);
+		authenticationService.resetPassword(email, token, newPassword);
 		return "Password reset successfully.";
 	}
 

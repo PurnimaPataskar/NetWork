@@ -94,8 +94,8 @@ public class AuthenticationService {
 				.orElseThrow(() -> new IllegalArgumentException("User not found."));
 
 		String resetPasswordToken = generateEmailVerificationToken();
-		String hashedToken = encoder.encode(resetPasswordToken);
-		user.setResetPasswordToken(hashedToken);
+		String hashedResetToken = encoder.encode(resetPasswordToken);
+		user.setResetPasswordToken(hashedResetToken);
 		user.setResetPasswordTokenExpiryDate(java.time.LocalDateTime.now().plusMinutes(durationInMinutes));
 		authenticationUserRepository.save(user);
 
@@ -120,7 +120,6 @@ public class AuthenticationService {
 			throw new IllegalArgumentException("Password reset token has expired.");
 		}
 
-		if (token != null) token = token.trim();
 		if (!encoder.matches(token, user.getResetPasswordToken())) {
 			throw new IllegalArgumentException("Invalid password reset token.");
 		}
