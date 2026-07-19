@@ -6,6 +6,7 @@ import com.linkedin.backend.features.authentication.dto.AuthenticationRequestBod
 import com.linkedin.backend.features.authentication.dto.AuthenticationResponseBody;
 import com.linkedin.backend.features.authentication.model.AuthenticationUser;
 import com.linkedin.backend.features.authentication.repository.AuthenticationUserRepository;
+import com.linkedin.backend.features.authentication.utils.EmailService;
 import com.linkedin.backend.features.authentication.utils.Encoder;
 import com.linkedin.backend.features.authentication.utils.JsonWebToken;
 
@@ -16,11 +17,13 @@ public class AuthenticationService {
 	private final Encoder encoder;
 	private final JsonWebToken jsonWebToken;
 	private final AuthenticationUserRepository authenticationUserRepository;
+	private final EmailService emailService;
 	
-	public AuthenticationService(Encoder encoder, AuthenticationUserRepository authenticationUserRepository, JsonWebToken jsonWebToken) {
+	public AuthenticationService(Encoder encoder, AuthenticationUserRepository authenticationUserRepository, JsonWebToken jsonWebToken, EmailService emailService) {
 		this.encoder = encoder;
 		this.jsonWebToken = jsonWebToken;
 		this.authenticationUserRepository = authenticationUserRepository;
+		this.emailService = emailService;
 	}
 	
 	public AuthenticationUser getUser(String email) {
@@ -30,6 +33,11 @@ public class AuthenticationService {
 	public AuthenticationResponseBody register(AuthenticationRequestBody registerRequestBody) {
 		authenticationUserRepository.save(new AuthenticationUser(registerRequestBody.getEmail(), encoder.encode(registerRequestBody.getPassword())));
 		String token = jsonWebToken.generateToken(registerRequestBody.getEmail());
+		try {
+			emailService.sendEmail(registerRequestBody.getEmail(), "Welcome to NetWork", "Welcome to NetWork! Your account has been created successfully.");
+		} catch (Exception exception) {
+			throw new RuntimeException("Failed to send welcome email", exception);
+		}
 		return new AuthenticationResponseBody(token, "user registerd successfully");
 	}
 
