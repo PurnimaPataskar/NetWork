@@ -1,4 +1,6 @@
 package com.linkedin.backend.features.authentication.model;
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -19,8 +21,13 @@ public class AuthenticationUser {
 	@Email
 	@Column(unique = true)
 	private String email;
+	private Boolean isEmailVerified = false;
+	private String emailVerificationToken = null;
+	private LocalDateTime emailVerificationTokenExpiryDate = null;
 	@JsonIgnore
 	private String password;
+	private String resetPasswordToken = null;
+	private LocalDateTime resetPasswordTokenExpiryDate = null;
 	
 	
 	public AuthenticationUser(String email, String password) {
@@ -58,7 +65,46 @@ public class AuthenticationUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+
+	public boolean getEmailVerified() {
+		return Boolean.TRUE.equals(isEmailVerified);
+	}
+
+	public String getEmailVerificationToken() {
+		return emailVerificationToken;
+	}
+
+	public void setEmailVerificationToken(String emailVerificationToken) {
+		this.emailVerificationToken = emailVerificationToken;
+	}
+
+	public LocalDateTime getEmailVerificationTokenExpiryDate() {
+		return emailVerificationTokenExpiryDate;
+	}
+
+	public void setEmailVerificationTokenExpiryDate(LocalDateTime emailVerificationTokenExpiryDate) {
+		this.emailVerificationTokenExpiryDate = emailVerificationTokenExpiryDate;
+	}
+
+	public void setEmailVerified(boolean emailVerified) {
+		this.isEmailVerified = emailVerified;
+	}
+
+	public String getResetPasswordToken() {
+		return resetPasswordToken;
+	}
+
+	public void setResetPasswordToken(String resetPasswordToken) {
+		this.resetPasswordToken = resetPasswordToken;
+	}
+
+	public LocalDateTime getResetPasswordTokenExpiryDate() {
+		return resetPasswordTokenExpiryDate;
+	}
+
+	public void setResetPasswordTokenExpiryDate(LocalDateTime resetPasswordTokenExpiryDate) {
+		this.resetPasswordTokenExpiryDate = resetPasswordTokenExpiryDate;
+	}
 
 }
